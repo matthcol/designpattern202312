@@ -9,8 +9,8 @@ namespace Expression.Visitor
 {
     internal interface IVisitor
     {
-        void visitVariable(Variable variable);
-        void visitNumber(Number number);
-        void visitAddOperator(AddOperator addOperator);
+        void VisitVariable(Variable variable);
+        void VisitNumber(Number number);
+        void VisitAddOperator(AddOperator addOperator);
     }
 }

@@ -11,7 +11,7 @@ namespace Expression.Model
     {
         public override void Accept(IVisitor visitor)
         {
-            visitor.visitAddOperator(this);
+            visitor.VisitAddOperator(this);
         }
 
         public override void Display()

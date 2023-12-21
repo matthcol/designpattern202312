@@ -13,7 +13,7 @@ namespace Expression.Model
 
         public void Accept(IVisitor visitor)
         {
-            visitor.visitNumber(this);
+            visitor.VisitNumber(this);
         }
 
         public void Display()

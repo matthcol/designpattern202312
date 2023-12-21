@@ -13,7 +13,7 @@ namespace Expression.Visitor
         
         public double Result { get; private set; }
         
-        public void visitAddOperator(AddOperator addOperator)
+        public void VisitAddOperator(AddOperator addOperator)
         {
             addOperator.LeftOperand.Accept(this);
             double left = Result;
@@ -21,12 +21,12 @@ namespace Expression.Visitor
             Result += left; 
         }
 
-        public void visitNumber(Number number)
+        public void VisitNumber(Number number)
         {
             Result = number.Value;
         }
 
-        public void visitVariable(Variable variable)
+        public void VisitVariable(Variable variable)
         {
             Result = VariableValues[variable];
         }
