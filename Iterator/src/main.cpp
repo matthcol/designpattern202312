@@ -2,11 +2,14 @@
 #include <vector>
 #include <iostream>
 #include <list>
+#include <random>
+#include <cmath>
+#include <algorithm>
 
 // displayIterable with limit (x firsts, x lasts): Input/Forward iterator
 template<class InputIt>
 void displayIterable(InputIt first, InputIt last, size_t limit=10){
-    
+
 }
 
 void iterateCities(){
@@ -46,7 +49,26 @@ void iterateCities(){
     std::cout << "city read: " << *it3 << std::endl;
 }
 
+void iterateNumbers(){
+    std::random_device rd{};
+    std::mt19937 gen{rd()};
+ 
+    // values near the mean are the most likely
+    // standard deviation affects the dispersion of generated values from the mean
+    std::normal_distribution<double> d{12.0, 3.0};
+ 
+    // draw a sample from the normal distribution and round it to an integer
+    // auto random_int = [&d, &gen]{ return std::round(d(gen)); };
+
+    std::vector<double> numbers(1000000);
+    std::generate(numbers.begin(), numbers.end(), [&d, &gen]{ return d(gen); });
+    for (int i=0; i<10; ++i) {
+        std::cout << numbers[i] << std::endl;
+    }
+}
+
 
 int main(){
     iterateCities();
+    iterateNumbers();
 }
