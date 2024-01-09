@@ -5,11 +5,34 @@
 #include <random>
 #include <cmath>
 #include <algorithm>
+#include <set>
 
 // displayIterable with limit (x firsts, x lasts): Input/Forward iterator
 template<class InputIt>
 void displayIterable(InputIt first, InputIt last, size_t limit=10){
-
+	auto distance = std::distance(first, last);
+	if (distance > limit)
+	{
+		int firstStopDistance = limit / 2 + limit % 2;
+		auto next = std::next(first, firstStopDistance);
+		for (; first != next; ++first)
+		{
+			std::cout << *first << std::endl;
+		}
+        std::cout << "..." << std::endl;
+		std::advance(first, distance - firstStopDistance - (limit / 2));
+		for (; first != last; ++first)
+		{
+			std::cout << *first << std::endl;
+		}
+	}
+	else
+	{
+		for (; first != last; ++first)
+		{
+			std::cout << *first << std::endl;
+		}
+	}
 }
 
 void iterateCities(){
@@ -62,9 +85,26 @@ void iterateNumbers(){
 
     std::vector<double> numbers(1000000);
     std::generate(numbers.begin(), numbers.end(), [&d, &gen]{ return d(gen); });
-    for (int i=0; i<10; ++i) {
-        std::cout << numbers[i] << std::endl;
-    }
+
+    displayIterable(numbers.begin(), numbers.end());
+    std::cout << std::endl;
+    displayIterable(numbers.begin() + 1000, numbers.begin() + 1010);
+    std::cout << std::endl;
+
+    std::set<double> setNumbers(numbers.cbegin(), numbers.cend());
+    displayIterable(setNumbers.begin(), setNumbers.end());
+    std::cout << std::endl;
+
+    std::vector<double> results(numbers.size());
+    std::transform(
+        numbers.cbegin(),
+        numbers.cend(),
+        results.begin(),
+        [](double d){return d+4.0;}
+    );
+    displayIterable(results.begin(), results.end());
+    std::cout << std::endl;
+
 }
 
 
