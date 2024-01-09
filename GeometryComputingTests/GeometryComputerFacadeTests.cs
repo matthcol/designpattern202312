@@ -51,6 +51,7 @@ namespace GeometryComputingTests
             Assert.That(actualArea, Is.EqualTo(expectedArea).Within(1E-15));
         }
 
+        [Test]
         public void PolygonPerimeter_WhenTriangle()
         {
             IEnumerable<IPoint> points = [
