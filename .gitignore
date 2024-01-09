@@ -4,3 +4,12 @@
 *.o
 *.pdb
 .vscode/
+.vs/
+*.vcxproj.filters
+*.vcxproj.user
+x64/
+bin/
+obj/
+Debug/
+Release/
+*.mdj
