@@ -9,14 +9,22 @@ namespace GeometryFacade.Computing
 {
     public class GeometryComputerFacade : IGeometryComputer
     {
+
+        private Circle _circle;
+        public GeometryComputerFacade() { 
+            _circle = new Circle() { Radius = 1 };
+        }
+
         public double CircleArea(int radius)
         {
-            throw new NotImplementedException();
+            _circle.Radius = radius;
+            return _circle.Surface;
         }
 
         public double CirclePerimeter(int radius)
         {
-            throw new NotImplementedException();
+            _circle.Radius = radius;
+            return _circle.Perimeter;
         }
 
         public double Distance(IPoint p1, IPoint p2)
@@ -26,14 +34,23 @@ namespace GeometryFacade.Computing
             return doubleP1.Distance(doubleP2);
         }
 
-        public double PolygonArea(IList<IPoint> points)
+        public double PolygonArea(IEnumerable<IPoint> points)
         {
-            throw new NotImplementedException();
+            Polygon polygon = new Polygon() { Summits = points.Select(
+                    p => new Point() { X = p.X, Y = p.Y }
+                ).ToList() };
+            return polygon.Surface;
         }
 
-        public double PolygonPerimeter(IList<IPoint> points)
+        public double PolygonPerimeter(IEnumerable<IPoint> points)
         {
-            throw new NotImplementedException();
+            Polygon polygon = new Polygon()
+            {
+                Summits = points.Select(
+                    p => new Point() { X = p.X, Y = p.Y }
+                ).ToList()
+            };
+            return polygon.Perimeter;
         }
     }
 }
