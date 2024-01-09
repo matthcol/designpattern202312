@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Expression.Model
 {
-    internal class Variable: IArithmeticExpression
+    public class Variable: IArithmeticExpression
     {
         public string Name { get; set; } = "?";
 
@@ -16,9 +16,9 @@ namespace Expression.Model
             visitor.VisitVariable(this);
         }
 
-        public void Display()
+        /*public void Display()
         {
             Console.Write(Name);
-        }
+        }*/
     }
 }

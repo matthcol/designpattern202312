@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Expression.Model
 {
-    internal interface IOperator: IArithmeticExpression
+    public interface IOperator : IArithmeticExpression, IEnumerable<IArithmeticExpression>
     {
-        // Iterator on operands
 
     }
 }

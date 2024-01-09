@@ -7,23 +7,53 @@ using System.Threading.Tasks;
 
 namespace Expression.Visitor
 {
-    internal class ComputeVisitor : IVisitor
+    public class ComputeVisitor : IVisitor
     {
         public IDictionary<Variable, double> VariableValues { get; set; } = new Dictionary<Variable, double>();
         
-        public double Result { get; private set; }
+        public double Result { get; set; }
         
         public void VisitAddOperator(AddOperator addOperator)
         {
-            addOperator.LeftOperand.Accept(this);
-            double left = Result;
             addOperator.RightOperand.Accept(this);
-            Result += left; 
+            double right = Result;
+            addOperator.LeftOperand.Accept(this);
+            Result += right; 
+        }
+
+        public void VisitDivOperator(DivOperator divOperator)
+        {
+            divOperator.RightOperand.Accept(this);
+            double right = Result;
+            divOperator.LeftOperand.Accept(this);
+            Result /= right;
+        }
+
+        public void VisitMulOperator(MulOperator mulOperator)
+        {
+            mulOperator.RightOperand.Accept(this);
+            double right = Result;
+            mulOperator.LeftOperand.Accept(this);
+            Result *= right;
         }
 
         public void VisitNumber(Number number)
         {
             Result = number.Value;
+        }
+
+        public void VisitSubOperator(SubOperator subOperator)
+        {
+            subOperator.RightOperand.Accept(this);
+            double right = Result;
+            subOperator.LeftOperand.Accept(this);
+            Result -= right;
+        }
+
+        public void VisitSubUnaryOperator(SubUnaryOperator subUnaryOperator)
+        {
+            subUnaryOperator.Operand.Accept(this);
+            Result *= -1;
         }
 
         public void VisitVariable(Variable variable)

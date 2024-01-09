@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace Expression.Model
 {
-    public class AddOperator : AbstractBinaryOperator
+    public class SubUnaryOperator : AbstractUnaryOperator
     {
         public override void Accept(IVisitor visitor)
         {
-            visitor.VisitAddOperator(this);
+            visitor.VisitSubUnaryOperator(this);
         }
-       public override string ToString()
+
+        public override string ToString()
         {
-            return "+";
+            return ".-.";
         }
     }
 }

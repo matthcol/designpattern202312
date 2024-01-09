@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Expression.Model
 {
-    internal interface IArithmeticExpression
+    public interface IArithmeticExpression
     {
-        void Display();
-
         void Accept(IVisitor visitor);
     }
 }

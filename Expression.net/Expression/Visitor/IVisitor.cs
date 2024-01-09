@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 
 namespace Expression.Visitor
 {
-    internal interface IVisitor
+    public interface IVisitor
     {
         void VisitVariable(Variable variable);
         void VisitNumber(Number number);
         void VisitAddOperator(AddOperator addOperator);
+        void VisitSubUnaryOperator(SubUnaryOperator subUnaryOperator);
+        void VisitMulOperator(MulOperator mulOperator);
+        void VisitSubOperator(SubOperator subOperator);
+        void VisitDivOperator(DivOperator divOperator);
     }
 }

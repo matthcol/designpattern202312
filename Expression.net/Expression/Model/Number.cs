@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Expression.Model
 {
-    internal class Number: IArithmeticExpression
+    public class Number: IArithmeticExpression
     {
         public double Value { get; set; }
 
@@ -16,9 +16,9 @@ namespace Expression.Model
             visitor.VisitNumber(this);
         }
 
-        public void Display()
+        /*public void Display()
         {
             Console.Write(Value);
-        }
+        }*/
     }
 }
